@@ -526,41 +526,6 @@ function baseComponent:addEvent(eventName, onEvent)
   return obj
 end
 
----------------- Timer ------------------
---[[
-local Timer = setmetatable({Enabled = true, type = function() return 'Timer' end}, Invisible)
-
-Timer.__index = Timer
-
-function Timer:run()
-  self.Enabled = nil
-  if self.onTime then
-    self.timerId = event.timer(self.interval,
-      function()
-        if self.Enabled and work then
-          self.onTime(self)
-        else
-          self:stop()
-        end
-      end,
-      math.huge
-    )
-  end
-end
-
-function Timer:stop()
-  slef.Enabled = false
-  event.cancel(self.timerId)
-end
-
-function baseComponent:addTimer(interval, onTime)
-  local obj = {interval = interval, onTime = onTime}
-  self:makeChild(obj)
-  setmetatable(obj, Timer)
-  obj:run()
-  return obj
-end
-]]
 ------------- Event handler -------------
 
 local listeners = {}
